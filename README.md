@@ -57,5 +57,5 @@ The performance of the discovered solutions in terms of test RMSE
 
 ## Note
 ```
-This work is submitted to Materials and Manufacturing Processes
+This work has been submitted to Materials and Manufacturing Processes
 ```
