@@ -6,11 +6,11 @@ This work introduces a custom genetic algorithm (GA) based neural architecture s
 
 The proposed algorithm explores the below combinatorial parameter space defining the architecture of the Transformer model.
 <p align="center">
-  <img height="600" src="/params.png">
+  <img height="300" src="/params.png">
 </p>
 
 <p align="center">
-  <img height="500" src="/ea_predictor_resize.png">
+  <img height="600" src="/ea_predictor_resize.png">
 </p>
 
 ## Prerequisites
@@ -20,24 +20,42 @@ pip install -r requirements.txt
 ```
 
 ## Descriptions
-- launcher.py: launcher for the experiments.
-- experiments.py: Evaluation of the discovered network by ENAS-PdM on unobserved data during EA & Training.
+- data_process_update_valid.py: to process multivariate time series data for preparing inputs for the Transformer.
+- initialization_LHS.py: to perform the full training of the networks selected by LHS and to collect their validation RMSE to be used for training NGBoost.
+- enas_transformer_cma_retraining.py: to run the evolutionary search and to find the solutions.
+- topk_test.py: to calculate the test RMSE of each solution.
+
 
 ## Run
-Please launch ENAS-PdM by 
+Data preparation
 ```bash
-python3 launcher.py
+python3 data_process_update_valid.py --subdata 001 -w 40 -s 1 --vs 20
 ```
-After each generation, the information of the best individual is displayed
+Predictor initialization
 ```bash
-50      11      11.5005 0.153568        11.2976 11.9282
-pickle dump
-log saved
-Best individual:
-[2, 4, 1, 13, 12]
-Best individual is saved
-37873.60605573654
+python3 initialization_LHS.py --subdata 001 -w 40 -t 0 -ep 100 -n_samples 100 -pt 10
+```
+Evolutionary NAS
+```bash
+python3 enas_transformer_cma_retraining.py --subdata 001 -w 40 --pop 1000 --gen 10 -t 0 -ep 100 
+```
+Test results
+```bash
+python3 topk_test.py --subdata 001 -w 40 -t 0 -ep_init 100 -ep_train 100 --pop 1000 --gen 10 --model "NGB" -topk 10 -sp 100 -n_samples 100 --sc "ga_retrain"
 ```
 
 
-## References
+## Results
+The performance of the discovered solutions in terms of test RMSE
+
+| Metrics \ sub-datasets | FD001 | FD002 | FD003 | FD004 | SUM   |
+|------------------------|-------|-------|-------|-------|-------|
+| Test RMSE              | 11.50 | 16.14 | 11.35 | 20.00 | 58.99 |
+| s-score                | 202   | 1131  | 227   | 2299  | 3858  |
+
+
+
+## Note
+```
+This work is submitted to Materials and Manufacturing Processes
+```
