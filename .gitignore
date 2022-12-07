@@ -13,6 +13,20 @@ bin-release/
 *.ipa
 *.apk
 
+# Dataset files
+data_prep/
+*.mat
+*.npy
+*.npz
+
+# Figures
+Figures/
+*.png
+
+# Saved models
+model/
+
+
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.

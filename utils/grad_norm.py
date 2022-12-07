@@ -1,0 +1,79 @@
+# Copyright 2021 Samsung Electronics Co., Ltd.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# =============================================================================
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+from torchvision import models
+
+def get_layer_metric_array(net, metric, mode): 
+    metric_array = []
+
+
+    # for layer in net.modules():
+    #     print ("layer: ", layer)
+    #     # print (layer.parameters())
+
+    # for name, param in net.named_parameters():
+    #     print (name, param)
+
+    # for name, immediate_child_module in net.named_children():
+    #     print (name)
+    #     print (immediate_child_module)
+
+    # print ("named_modules")
+    # for name, layer in net.named_modules():
+    #     print(name, layer)
+
+    # children = list(net.children())
+    # print ("children: ", children)
+
+    
+    for layer in net.modules():
+        if mode=='channel' and hasattr(layer,'dont_ch_prune'):
+            continue
+        # if isinstance(layer, nn.Conv2d) or isinstance(layer, nn.Linear):
+        #     metric_array.append(metric(layer))
+        # if isinstance(layer, nn.LayerNorm) or isinstance(layer, nn.Linear):
+        #     metric_array.append(metric(layer))
+        if isinstance(layer, nn.Linear):
+            metric_array.append(metric(layer))
+    
+
+    
+
+    
+    return metric_array
+
+
+def get_grad_norm_arr(net, inputs, targets, max_rul, criterion, split_data=1, skip_grad=False):
+    net.zero_grad()
+    N = inputs.shape[0]
+    for sp in range(split_data):
+        st=sp*N//split_data
+        en=(sp+1)*N//split_data
+
+        # outputs = net.forward(inputs[st:en])
+        outputs = net.forward(inputs[st:en])
+        # print ("outputs", outputs)
+        # loss = loss_fn(outputs, targets[st:en])
+        loss = torch.sqrt(criterion(outputs*max_rul, targets[st:en]*max_rul))
+        loss.backward()
+
+        grad_norm_arr = get_layer_metric_array(net, lambda l: l.weight.grad.norm() if l.weight.grad is not None else torch.zeros_like(l.weight), mode='param')
+        
+    return grad_norm_arr
+
