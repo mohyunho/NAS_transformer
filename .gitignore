@@ -21,7 +21,7 @@ data_prep/
 
 # Figures
 Figures/
-
+*.png
 
 # Saved models
 model/
