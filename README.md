@@ -57,5 +57,5 @@ The performance of the discovered solutions in terms of test RMSE
 
 ## Note
 ```
-This work has been accepted for publication in the [Materials and Manufacturing Processes](https://www.tandfonline.com/journals/lmmp20).
+This work has been accepted for publication in the Materials and Manufacturing Processes.
 ```
