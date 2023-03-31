@@ -6,11 +6,11 @@ This work introduces a custom genetic algorithm (GA) based neural architecture s
 
 The proposed algorithm explores the below combinatorial parameter space defining the architecture of the Transformer model.
 <p align="center">
-  <img height="300" src="/params.png">
+  <img height="200" src="/params.png">
 </p>
 
 <p align="center">
-  <img height="600" src="/ea_predictor_resize.png">
+  <img height="400" src="/ea_predictor_resize.png">
 </p>
 
 ## Prerequisites
