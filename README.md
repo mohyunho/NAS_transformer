@@ -2,7 +2,7 @@
 Evolutionary Neural Architecture Search on Transformers for RUL Prediction
 
 ![check](transformer_resize.png)
-Note that the backbone architecture is [the Transformer for RUL predictions](https://arxiv.org/abs/2106.15842) and the preformance predictor is [the NGBoost model](https://arxiv.org/abs/1910.03225)  <br/>
+This work introduces a custom genetic algorithm (GA) based neural architecture search (NAS) technique that automatically finds the optimal architectures of Transformers for RUL predictions. Our GA provides a fast and efficient search, finding high-quality solutions based on performance predictor that is updated at every generation, thus reducing the needed network training. Note that the backbone architecture is [the Transformer for RUL predictions](https://arxiv.org/abs/2106.15842) and the preformance predictor is [the NGBoost model](https://arxiv.org/abs/1910.03225)  <br/>
 
 The proposed algorithm explores the below combinatorial parameter space defining the architecture of the Transformer model.
 <p align="center">
@@ -57,5 +57,30 @@ The performance of the discovered solutions in terms of test RMSE
 
 ## Note
 ```
-This work has been accepted for publication in the Materials and Manufacturing Processes.
+H. Mo and G. Iacca, 
+Evolutionary neural architecture search on transformers for remaining useful life prediction,
+Materials and Manufacturing Processes, 2023,
+https://doi.org/10.1080/10426914.2023.2199499.
+```
+
+Bibtex entry ready to be cited
+```
+@article{mo2023enas,
+author = {Mo, Hyunho and Iacca, Giovanni},
+title = {Evolutionary Neural Architecture Search on Transformers for Remaining Useful Life Prediction},
+journal = {Materials and Manufacturing Processes},
+volume = {0},
+number = {0},
+pages = {1-18},
+year  = {2023},
+publisher = {Taylor & Francis},
+doi = {10.1080/10426914.2023.2199499},
+URL = {     
+        https://doi.org/10.1080/10426914.2023.2199499
+},
+eprint = {     
+        https://doi.org/10.1080/10426914.2023.2199499
+}
+
+}
 ```
