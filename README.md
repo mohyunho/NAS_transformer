@@ -55,7 +55,7 @@ The performance of the discovered solutions in terms of test RMSE
 
 
 
-## Note
+## References
 ```
 H. Mo and G. Iacca, 
 Evolutionary neural architecture search on transformers for remaining useful life prediction,
