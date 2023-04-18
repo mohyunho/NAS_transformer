@@ -65,22 +65,12 @@ https://doi.org/10.1080/10426914.2023.2199499.
 
 Bibtex entry ready to be cited
 ```
-@article{mo2023enas,
-author = {Mo, Hyunho and Iacca, Giovanni},
-title = {Evolutionary Neural Architecture Search on Transformers for Remaining Useful Life Prediction},
-journal = {Materials and Manufacturing Processes},
-volume = {0},
-number = {0},
-pages = {1-18},
-year  = {2023},
-publisher = {Taylor & Francis},
-doi = {10.1080/10426914.2023.2199499},
-URL = {     
-        https://doi.org/10.1080/10426914.2023.2199499
-},
-eprint = {     
-        https://doi.org/10.1080/10426914.2023.2199499
-}
-
+@article{mo2023evolutionary,
+  title={Evolutionary neural architecture search on transformers for RUL prediction},
+  author={Mo, Hyunho and Iacca, Giovanni},
+  journal={Materials and Manufacturing Processes},
+  pages={1--18},
+  year={2023},
+  publisher={Taylor \& Francis}
 }
 ```
